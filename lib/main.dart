@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_sample/sample/home.dart';
+import 'package:flutter_getx_sample/sample/next_screen.dart';
+import 'package:flutter_getx_sample/sample/unknown.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -12,45 +14,39 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "GetX test - Navigation",
+      title: "Getx test - Navigation",
+      initialRoute: "/",
+      defaultTransition: Transition.zoom,
+      getPages: [
+        GetPage(name: "/", page: () => MainApp()),
+        GetPage(name: "/home", page: () => Home()),
+        // 파라미터로 넘기는 법 (2)
+        GetPage(name: "/nextScreen/:someValue", page: () => NextScreen(),
+          transition: Transition.leftToRight),
+      ],
+      // 정의되지 않은 uri 입력할 경우
+      unknownRoute: GetPage(name: "/notfound", page: () => UnknownScreen()),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Navigation"),
-        ),
+        appBar: AppBar(title: Text("Navigation"),),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ElevatedButton(
-                child: Text("Go to Home"),
-                onPressed: () async {
-//                  Get.to(
-//                    Home(),
-//
-//                    // 풀스크린으로 설정할 경우, 뒤로가기 버튼이 아닌 X 버튼 출력
-//                    fullscreenDialog: true,
-//
-//                    // 애니메이션 효과
-//                    transition: Transition.zoom,
-//                    duration: Duration(milliseconds: 2000),
-////                  curve: Curves.bounceIn,
-//                  );
-
-                  // 이전 화면으로 return할 필요가 없을 경우
-//                  Get.off(Home());
-
-                  // 이전 화면에 대한 기록 모두 제거
-//                  Get.offAll(Home());
-                
-                  // 다음 페이지로 갈 때 arguments 전달
-//                  Get.to(Home(), arguments: "Data from main");
-
-                  // 페이지 닫힐 때, return 값을 가져옴
-                  var data = await Get.to(Home());
-                  print("The received data is $data");
-                },
-              )
+              ElevatedButton(child: Text("Go to Home"),
+              onPressed: () {
+//                Get.toNamed("/home",);
+                // 파라미터로 넘기는 법 (1)
+                Get.toNamed("/home?channel=sample&code=flutter",);
+              },),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(child: Text("Next screen"),
+                onPressed: () {
+//                  Get.toNamed("/nextScreen",);
+                  Get.toNamed("/x",);
+                },),
             ],
           ),
         ),

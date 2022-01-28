@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_sample/sample/home.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
@@ -30,7 +31,9 @@ class Home extends StatelessWidget {
               style: ButtonStyle(
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => Colors.blueAccent)),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed("/nextScreen/1234");
+              },
             ),
             SizedBox(
               height: 10,
@@ -57,6 +60,12 @@ class Home extends StatelessWidget {
 //              "${Get.arguments}",
 //              style: TextStyle(color: Colors.green, fontSize: 15),
 //            ),
+
+            // Getx에서 파라미터로 넘긴 값을 받는 것 (1)
+            Text(
+              "Channel name is ${Get.parameters['channel']} and code is ${Get.parameters['code']}",
+              style: TextStyle(color: Colors.redAccent, fontSize: 10),
+            )
           ],
         ),
       ),
