@@ -1,4 +1,4 @@
-import 'package:flutter_getx_sample/student.dart';
+import 'package:flutter_getx_sample/sample/state/student.dart';
 import 'package:get/get.dart';
 
 class StudentController extends GetxController {
