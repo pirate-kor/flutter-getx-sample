@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_sample/main.dart';
-import 'package:flutter_getx_sample/sample/home.dart';
-import 'package:flutter_getx_sample/sample/next_screen.dart';
-import 'package:flutter_getx_sample/sample/unknown.dart';
+import 'package:flutter_getx_sample/sample/navigation/home.dart';
+import 'package:flutter_getx_sample/sample/navigation/next_screen.dart';
+import 'package:flutter_getx_sample/sample/navigation/unknown.dart';
 import 'package:get/get.dart';
 
 class NavigationSample2 extends StatelessWidget {
